@@ -29,12 +29,19 @@ A simple Ethereum-based vending machine that allows users to:
 
 ## Project Structure
 VendingMachine/
+
 ├── contracts/
+
 │   └── VendingMachine.sol   # Smart contract code
+
 ├── scripts/
+
 │   └── deploy.js            # Deployment script
+
 ├── test/
+
 │   └── VendingMachine.test.js  # Unit tests
+
 ├── README.md                # Project documentation
 
 ## Future Improvements
