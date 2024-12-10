@@ -34,11 +34,12 @@ VendingMachine/
 │   └── VendingMachine.sol   # Smart contract code
 
 ├── scripts/
+
 │   └── deploy.js            # Deployment script
 
 ├── test/
-│   └── VendingMachine.test.js  # Unit tests
 
+│   └── VendingMachine.test.js  # Unit tests
 ├── README.md                # Project documentation
 
 ## Future Improvements
