@@ -28,14 +28,7 @@ A simple Ethereum-based vending machine that allows users to:
    npx hardhat test
 
 ## Project Structure
-VendingMachine/
-├── contracts/
-│   └── VendingMachine.sol   # Smart contract code
-├── scripts/
-│   └── deploy.js            # Deployment script
-├── test/
-│   └── VendingMachine.test.js  # Unit tests
-├── README.md                # Project documentation
+![image](https://github.com/user-attachments/assets/98d4d182-47ca-4671-8f1d-a842a8fddb9c)
 
 ## Future Improvements
 - Add front-end integration for easy user interaction.
