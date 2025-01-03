@@ -9,13 +9,20 @@ This project implements an ERC-20 token with pausable functionality and a maximu
 
 **Setup**
 1.	Clone the repository:
+
   git clone https://github.com/yourusername/MyTokenProject.git
   cd MyTokenProject
-2.	Install dependencies:
+
+3.	Install dependencies:
+
    npm install
-3.	Compile the smart contracts:
+
+4.	Compile the smart contracts:
+
   truffle compile
-4.	Deploy to a local network:
+
+5.	Deploy to a local network:
+
   truffle migrate --network development
 
 **Testing**
