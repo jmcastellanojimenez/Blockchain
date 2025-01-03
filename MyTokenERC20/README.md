@@ -11,6 +11,7 @@ This project implements an ERC-20 token with pausable functionality and a maximu
 1.	Clone the repository:
 
   git clone https://github.com/yourusername/MyTokenProject.git
+
   cd MyTokenProject
 
 3.	Install dependencies:
