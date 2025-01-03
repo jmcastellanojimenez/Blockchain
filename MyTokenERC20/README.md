@@ -1,6 +1,10 @@
 **MyTokenERC20**
 
-This project implements an ERC-20 token with pausable functionality and a maximum supply using OpenZeppelin Contracts.
+This project implements an ERC-20 token with pausable functionality, allowing the contract owner to temporarily 
+disable token transfers and burning when needed. Using OpenZeppelin’s Pausable and Ownable contracts, the token 
+ensures secure ownership management and operational control. The contract enforces a maximum token supply, enables 
+minting by the owner up to this limit, and allows users to burn their tokens. All actions, including pausing and 
+unpausing, are logged for transparency and traceability.
 
 **Requirements**
 	•	Node.js
@@ -27,6 +31,7 @@ This project implements an ERC-20 token with pausable functionality and a maximu
   truffle migrate --network development
 
 **Testing**
+
   truffle test
 
 **Pausing Functionality**
