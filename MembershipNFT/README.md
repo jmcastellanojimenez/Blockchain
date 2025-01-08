@@ -10,19 +10,19 @@ A Solidity smart contract for a membership system using NFTs. Membership holders
 
 ## Installation
 1. Clone this repository:
-   ```bash
+
    git clone https://github.com/YOUR_GITHUB_USERNAME/MembershipNFT.git
    cd MembershipNFT
 2.	Install dependencies:
-   ```bash
+
    npm install
 3.	Run tests:
-   ```bash
+
    npx hardhat test
 4.	Deploy the contract:
-   ```bash
+
    npx hardhat run scripts/deploy.js
----
+
 
 ### **3. Uploading to GitHub**
 1. Create a new repository on GitHub named `MembershipNFT`.
