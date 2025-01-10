@@ -15,17 +15,28 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol"; // Base contract for N
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"; // Adds token enumeration functionality.
 import "@openzeppelin/contracts/access/Ownable.sol"; // Provides ownership access control.
 
-// Defining the main contract
+/* Defining the main contract: Why inherit from ERC721Enumerable and Ownable?
+	•	ERC721Enumerable: Adds functionality to list tokens owned by an address or query all tokens in the contract.
+      Useful for managing and enumerating memberships (e.g. listing all NFTs owned by a user or iterating through tokens).
+	•	Ownable: Provides ownership control, allowing only the contract owner to perform specific administrative actions (e.g. withdrawing funds).
+      This ensures secure management of contract-level operations.
+*/
 contract MembershipNFT is ERC721Enumerable, Ownable {  
 
-    // Custom error definitions for gas efficiency
+    /* Custom error definitions for gas efficiency.
+       error: Defines custom, gas-efficient error messages for specific failure cases.
+       Example: Thrown when balance is insufficient, the token doesn't exist, or the membership is expired.
+    */
     error ConquerMembershipInsufficientBalance(); // Thrown when balance is insufficient.
     error ConquerMembershipNonExistentToken(); // Thrown when the token doesn't exist.
     error ConquerMembershipNotTheOwner(); // Thrown when an action is attempted by someone other than the owner.
     error ConquerMembershipNotAllowed(); // Thrown when the user isn't allowed to perform an action.
     error ConquerMembershipExpired(); // Thrown when the membership is expired.
 
-    // Events to track contract activities
+    /* Events to track contract activities.
+       event: Defines a log for important contract actions (e.g. minting, renewing, burning NFTs).
+       indexed: Makes specific parameters (e.g. user addresses) searchable in blockchain logs.
+    */
     event NewMembershipMinted(address indexed to, uint256 tokenID, MembershipLevel level); // When a new membership NFT is minted.
     event MembershipRenewed(address indexed to, uint256 tokenID, MembershipLevel level, uint256 expiration); // When a membership is renewed.
     event MembershipBurned(address indexed owner, uint256 tokenID); // When a membership NFT is burned.
@@ -45,12 +56,18 @@ contract MembershipNFT is ERC721Enumerable, Ownable {
     uint256 silverPrice = 0.1 ether;
     uint256 goldPrice = 0.5 ether;
 
-    // Constructor to initialize the contract
+    /* Constructor to initialize the contract.
+       Name and symbol identify the NFT collection, making it recognizable in 
+       wallets and marketplaces, similar to how they are used in ERC20 for coins.
+    */
     constructor() ERC721("Conquer Membership", "CQM") Ownable(msg.sender) {
         _currentTokenId = 0; // Start token IDs from 0.
     }
 
-    // Function to mint a new membership NFT
+    /* Function to mint a new membership NFT.
+       external: Allows the function to be called by users or other contracts.
+       payable: Enables the function to accept Ether, which is required to pay for minting the NFT.
+    */
     function mintConquerMembership(MembershipLevel level) external payable {
         uint256 price = getPriceForLevel(level); // Get the price for the selected level.
 
@@ -64,6 +81,7 @@ contract MembershipNFT is ERC721Enumerable, Ownable {
         membershipLevels[_currentTokenId] = level; // Assign the membership level.
         membershipExpiration[_currentTokenId] = block.timestamp + 365 days; // Set the expiration date to 1 year.
 
+        // emit: Triggers an event to log the minting action, including the user, token ID, and membership level.
         emit NewMembershipMinted(msg.sender, _currentTokenId, level); // Log the minting event.
     }
 
@@ -89,7 +107,10 @@ contract MembershipNFT is ERC721Enumerable, Ownable {
         emit MembershipRenewed(msg.sender, tokenID, level, membershipExpiration[tokenID]); // Log the renewal event.
     }
 
-    // Helper function to get the price for a specific membership level
+    /* Helper function to get the price for a specific membership level.
+       public: Allows the function to be called externally (by users/contracts) or internally (by other functions).
+       view: Ensures the function only reads data (prices) without modifying the contract's state.
+    */
     function getPriceForLevel(MembershipLevel _level) public view returns (uint256) {
         if (_level == MembershipLevel.Gold) {
             return goldPrice;
