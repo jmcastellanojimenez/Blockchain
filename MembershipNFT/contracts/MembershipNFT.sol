@@ -16,10 +16,10 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"; /
 import "@openzeppelin/contracts/access/Ownable.sol"; // Provides ownership access control.
 
 /* Defining the main contract: Why inherit from ERC721Enumerable and Ownable?
-	•	ERC721Enumerable: Adds functionality to list tokens owned by an address or query all tokens in the contract.
-      Useful for managing and enumerating memberships (e.g. listing all NFTs owned by a user or iterating through tokens).
-	•	Ownable: Provides ownership control, allowing only the contract owner to perform specific administrative actions (e.g. withdrawing funds).
-      This ensures secure management of contract-level operations.
+	• ERC721Enumerable: Adds functionality to list tokens owned by an address or query all tokens in the contract.
+      	Useful for managing and enumerating memberships (e.g. listing all NFTs owned by a user or iterating through tokens).
+	• Ownable: Provides ownership control, allowing only the contract owner to perform specific administrative actions (e.g. withdrawing funds).
+      	This ensures secure management of contract-level operations.
 */
 contract MembershipNFT is ERC721Enumerable, Ownable {  
 
@@ -56,9 +56,12 @@ contract MembershipNFT is ERC721Enumerable, Ownable {
     uint256 silverPrice = 0.1 ether;
     uint256 goldPrice = 0.5 ether;
 
-    /* Constructor to initialize the contract.
-       Name and symbol identify the NFT collection, making it recognizable in 
-       wallets and marketplaces, similar to how they are used in ERC20 for coins.
+    /* Call two Constructors to initialize the contract:
+       1. Contract ERC721 --> to set Name and symbol to identify the NFT collection.
+       2. Contract Ownable --> to setting the contract deployer (msg.sender) as the owner enabling access control
+	• Allowing the owner to use onlyOwner functions.
+	• Without it, the contract won’t have an owner, restricting administrative actions.
+	• It’s essential for managing permissions and security in smart contracts
     */
     constructor() ERC721("Conquer Membership", "CQM") Ownable(msg.sender) {
         _currentTokenId = 0; // Start token IDs from 0.
